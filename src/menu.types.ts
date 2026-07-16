@@ -2,6 +2,7 @@ export interface MenuItem {
   id: string
   name: string
   description?: string
+  pricePrefix?: string
   price: string
   hidden?: boolean
 }

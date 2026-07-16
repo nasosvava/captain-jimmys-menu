@@ -12,18 +12,36 @@ const sourceMenus: Record<MenuData['id'], MenuData> = {
 
 const clone = <T,>(value: T): T => JSON.parse(JSON.stringify(value))
 const makeId = (prefix: string) => `${prefix}-${Date.now()}-${Math.random().toString(16).slice(2)}`
+const displayPrice = (item: MenuItem) => [item.pricePrefix?.trim(), item.price.trim()].filter(Boolean).join(' ')
 
 type ItemEditor = { categoryId: string; item: MenuItem; isNew: boolean }
 type AuthStatus = 'checking' | 'authenticated' | 'unauthenticated'
 
+function normalizeMenu(menu: MenuData): MenuData {
+  const normalized = clone(menu)
+  normalized.categories.forEach((category) => {
+    category.items.forEach((item) => {
+      if (item.pricePrefix) return
+      const legacyPrefix = item.price.match(/^(Το κιλό|Per kilo)\s*-\s*/i)
+      if (!legacyPrefix) return
+      item.pricePrefix = `${legacyPrefix[1]} -`
+      item.price = item.price.slice(legacyPrefix[0].length)
+    })
+  })
+  return normalized
+}
+
 function loadMenus(): Record<MenuData['id'], MenuData> {
-  return clone(sourceMenus)
+  return {
+    en: normalizeMenu(sourceMenus.en),
+    el: normalizeMenu(sourceMenus.el),
+  }
 }
 
 async function fetchMenuFile(id: MenuData['id']): Promise<MenuData> {
   const response = await fetch(`/api/menu/${id}`)
   if (!response.ok) throw new Error(`Could not load ${id} menu JSON.`)
-  return response.json()
+  return normalizeMenu(await response.json() as MenuData)
 }
 
 async function saveMenuFile(menu: MenuData): Promise<void> {
@@ -270,7 +288,7 @@ function App() {
     const file = event.target.files?.[0]
     if (!file) return
     try {
-      const imported = JSON.parse(await file.text()) as MenuData
+      const imported = normalizeMenu(JSON.parse(await file.text()) as MenuData)
       if (!imported.restaurant || !Array.isArray(imported.categories)) throw new Error('Invalid menu')
       imported.id = activeId
       updateActive((draft) => {
@@ -403,7 +421,7 @@ function App() {
                         {item.description && <div className="dish-description">{item.description}</div>}
                       </div>
                       <span className="leader" aria-hidden="true" />
-                      <span className="price">{item.price}</span>
+                      <span className="price">{displayPrice(item)}</span>
                       {editing && (
                         <div className="dish-actions">
                           <button onClick={() => toggleItem(category.id, item.id)}>
@@ -438,6 +456,14 @@ function App() {
             <h3>{itemEditor.isNew ? 'Νέο πιάτο' : 'Αλλαγή πιάτου'}</h3>
             <label>Όνομα πιάτου<input autoFocus value={itemEditor.item.name} onChange={(event) => setItemEditor({ ...itemEditor, item: { ...itemEditor.item, name: event.target.value } })} required /></label>
             <label>Περιγραφή <small>(προαιρετικό)</small><textarea value={itemEditor.item.description ?? ''} onChange={(event) => setItemEditor({ ...itemEditor, item: { ...itemEditor.item, description: event.target.value } })} /></label>
+            <label>
+              Κείμενο πριν από την τιμή <small>(προαιρετικό)</small>
+              <input
+                value={itemEditor.item.pricePrefix ?? ''}
+                onChange={(event) => setItemEditor({ ...itemEditor, item: { ...itemEditor.item, pricePrefix: event.target.value } })}
+                placeholder="π.χ. Το κιλό -"
+              />
+            </label>
             <label>Τιμή<input inputMode="decimal" value={itemEditor.item.price} onChange={(event) => setItemEditor({ ...itemEditor, item: { ...itemEditor.item, price: event.target.value } })} placeholder="0,00" required /></label>
             <div className="modal-actions"><button type="button" onClick={() => setItemEditor(null)}>Ακύρωση</button><button className="primary" type="submit">Αποθήκευση</button></div>
           </form>

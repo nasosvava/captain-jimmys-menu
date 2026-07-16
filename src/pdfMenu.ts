@@ -66,6 +66,8 @@ function buildTwoPages(menu: MenuData): [PageColumns, PageColumns] {
 }
 
 function dishNode(item: MenuItem): PdfNode {
+  const displayPrice = [item.pricePrefix?.trim(), item.price.trim()].filter(Boolean).join(' ')
+
   return {
     unbreakable: true,
     margin: [0, 0, 0, 2.5],
@@ -77,7 +79,7 @@ function dishNode(item: MenuItem): PdfNode {
           ...(item.description ? [{ text: item.description, style: 'description', margin: [0, 1, 0, 0] }] : []),
         ],
       },
-      { text: item.price, width: 37, alignment: 'right', style: 'price' },
+      { text: displayPrice, width: 37, alignment: 'right', style: 'price' },
     ],
     columnGap: 8,
   }
@@ -147,11 +149,19 @@ function pageBody(page: PageColumns): PdfNode {
   }
 }
 
-function templateBackground(pageSize: { width: number; height: number }): PdfNode[] {
+function templateBackground(
+  pageSize: { width: number; height: number },
+  menu: MenuData,
+  greekTitleNavyPatch?: string,
+): PdfNode[] {
   const maskTop = pageSize.height * (395 / 1491)
   const maskBottom = pageSize.height * (1300 / 1491)
+  const greekBreadLabelTop = pageSize.height * (1325 / 1491)
+  const greekBreadLabelHeight = pageSize.height * (48 / 1491)
+  const greekSubtitleTop = pageSize.height * (150 / 1491)
+  const greekNoteTop = pageSize.height * (1390 / 1491)
 
-  return [
+  const background: PdfNode[] = [
     {
       image: 'menuTemplate',
       width: pageSize.width,
@@ -168,25 +178,112 @@ function templateBackground(pageSize: { width: number; height: number }): PdfNod
           h: maskBottom - maskTop,
           color: paper,
         },
+        ...(menu.id === 'el' ? [
+          {
+            type: 'rect',
+            x: pageSize.width * (320 / 1055),
+            y: greekSubtitleTop,
+            w: pageSize.width * (415 / 1055),
+            h: pageSize.height * (62 / 1491),
+            color: paper,
+          },
+          {
+            type: 'rect',
+            x: pageSize.width * (270 / 1055),
+            y: greekBreadLabelTop,
+            w: pageSize.width * (515 / 1055),
+            h: greekBreadLabelHeight,
+            color: paper,
+          },
+          {
+            type: 'rect',
+            x: pageSize.width * (255 / 1055),
+            y: greekNoteTop,
+            w: pageSize.width * (545 / 1055),
+            h: pageSize.height * (65 / 1491),
+            color: paper,
+          },
+        ] : []),
       ],
       absolutePosition: { x: 0, y: 0 },
     },
   ]
+
+  if (menu.id === 'el') {
+    if (greekTitleNavyPatch) {
+      background.push({
+        image: 'greekTitleNavyPatch',
+        width: pageSize.width * (415 / 1055),
+        height: pageSize.height * (90 / 1491),
+        absolutePosition: {
+          x: pageSize.width * (320 / 1055),
+          y: pageSize.height * (140 / 1491),
+        },
+      })
+    }
+
+    background.push(
+      {
+        text: menu.subtitle ?? 'Παραδοσιακή Ελληνική Κουζίνα',
+        width: pageSize.width,
+        absolutePosition: {
+          x: 0,
+          y: pageSize.height * (158 / 1491),
+        },
+        alignment: 'center',
+        color: '#9a693e',
+        font: 'NotoSerif',
+        fontSize: 12.6,
+        italics: true,
+      },
+      {
+        text: 'ΨΩΜΙ ΚΑΤΑ ΑΤΟΜΟ - 0,50',
+        width: pageSize.width,
+        absolutePosition: { x: 0, y: pageSize.height * (1330 / 1491) },
+        alignment: 'center',
+        color: navy,
+        font: 'NotoSerif',
+        fontSize: 14.5,
+        bold: true,
+        characterSpacing: 0.35,
+      },
+      {
+        text: (menu.note ?? 'Όλα τα φαγητά μαγειρεύονται με έξτρα παρθένο βιολογικό ελαιόλαδο παραγωγής μας.')
+          .replace(' βιολογικό ', '\nβιολογικό '),
+        width: pageSize.width,
+        absolutePosition: {
+          x: 0,
+          y: pageSize.height * (1395 / 1491),
+        },
+        alignment: 'center',
+        color: navy,
+        font: 'NotoSerif',
+        fontSize: 10.2,
+        italics: true,
+        lineHeight: 1.08,
+      },
+    )
+  }
+
+  return background
 }
 
-function buildDocument(menu: MenuData, templateDataUrl: string) {
+function buildDocument(menu: MenuData, templateDataUrl: string, greekTitleNavyPatch?: string) {
   const pages = buildTwoPages(menu)
 
   return {
     pageSize: 'A4',
     pageMargins: [55, 235, 55, 72],
-    background: (_currentPage: number, pageSize: { width: number; height: number }) => templateBackground(pageSize),
+    background: (_currentPage: number, pageSize: { width: number; height: number }) => (
+      templateBackground(pageSize, menu, greekTitleNavyPatch)
+    ),
     defaultStyle: {
       font: 'NotoSerif',
       color: navy,
     },
     images: {
       menuTemplate: templateDataUrl,
+      ...(greekTitleNavyPatch ? { greekTitleNavyPatch } : {}),
     },
     content: pages.map((page, index) => ({
       pageBreak: index > 0 ? 'before' : undefined,
@@ -235,6 +332,46 @@ async function assetAsBase64(url: string) {
   return btoa(binary)
 }
 
+async function extractNavyTitlePatch(templateDataUrl: string) {
+  const region = { x: 320, y: 140, width: 415, height: 90 }
+  const image = await new Promise<HTMLImageElement>((resolve, reject) => {
+    const source = new Image()
+    source.onload = () => resolve(source)
+    source.onerror = () => reject(new Error('Could not prepare the Greek PDF title'))
+    source.src = templateDataUrl
+  })
+
+  const canvas = document.createElement('canvas')
+  canvas.width = region.width
+  canvas.height = region.height
+  const context = canvas.getContext('2d')
+  if (!context) throw new Error('Could not prepare the Greek PDF title')
+
+  context.drawImage(
+    image,
+    region.x,
+    region.y,
+    region.width,
+    region.height,
+    0,
+    0,
+    region.width,
+    region.height,
+  )
+
+  const pixels = context.getImageData(0, 0, region.width, region.height)
+  for (let index = 0; index < pixels.data.length; index += 4) {
+    const red = pixels.data[index]
+    const green = pixels.data[index + 1]
+    const blue = pixels.data[index + 2]
+    const isNavyArtwork = blue > red + 10 && blue > green + 6
+    if (!isNavyArtwork) pixels.data[index + 3] = 0
+  }
+  context.putImageData(pixels, 0, 0)
+
+  return canvas.toDataURL('image/png')
+}
+
 export async function downloadMenuPdf(menu: MenuData) {
   const [{ default: pdfMake }, regular, bold, italic, template] = await Promise.all([
     import('pdfmake/build/pdfmake.js'),
@@ -259,5 +396,9 @@ export async function downloadMenuPdf(menu: MenuData) {
   })
 
   const templateDataUrl = `data:image/png;base64,${template}`
-  pdfMake.createPdf(buildDocument(menu, templateDataUrl)).download(`captain-jimmys-menu-${menu.id}.pdf`)
+  const greekTitleNavyPatch = menu.id === 'el'
+    ? await extractNavyTitlePatch(templateDataUrl)
+    : undefined
+  pdfMake.createPdf(buildDocument(menu, templateDataUrl, greekTitleNavyPatch))
+    .download(`captain-jimmys-menu-${menu.id}.pdf`)
 }
