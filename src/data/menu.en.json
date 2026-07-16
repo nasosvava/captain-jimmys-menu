@@ -1,0 +1,333 @@
+{
+  "id": "en",
+  "language": "English",
+  "restaurant": "CAPTAIN JIMMY'S",
+  "subtitle": "Traditional Greek Cuisine",
+  "currency": "€",
+  "categories": [
+    {
+      "id": "salads-starters",
+      "title": "SALADS - STARTERS",
+      "items": [
+        {
+          "id": "tomato-salad",
+          "name": "TOMATO SALAD / ΝΤΟΜΑΤΟΣΑΛΑΤΑ",
+          "price": "5,00"
+        },
+        {
+          "id": "mixed-salad",
+          "name": "MIXED SALAD / ΑΝΑΜΕΙΚΤΗ ΣΑΛΑΤΑ",
+          "price": "6,00"
+        },
+        {
+          "id": "greek-salad-tomatoes-cucumber-pepper-onion-feta-cheese-oregano-olives-olive-oil",
+          "name": "GREEK SALAD (tomatoes, cucumber, pepper, onion, feta cheese, oregano, olives, olive oil)",
+          "price": "8,50"
+        },
+        {
+          "id": "boiled-greens-salad-amaranth",
+          "name": "BOILED GREENS SALAD (amaranth) / ΒΛΗΤΑ",
+          "price": "4,50"
+        },
+        {
+          "id": "beetroot-salad",
+          "name": "BEETROOT SALAD / ΠΑΝΤΖΑΡΙΑ",
+          "price": "4,50"
+        },
+        {
+          "id": "feta-cheese",
+          "name": "FETA CHEESE / ΦΕΤΑ",
+          "price": "3,50"
+        },
+        {
+          "id": "baked-feta",
+          "name": "BAKED FETA / ΦΕΤΑ ΨΗΤΗ",
+          "price": "4,50"
+        },
+        {
+          "id": "fried-cheese",
+          "name": "FRIED CHEESE / ΣΑΓΑΝΑΚΙ",
+          "price": "4,00"
+        },
+        {
+          "id": "tzatziki-greek-yogurt-with-garlic-vinegar-and-olive-oil",
+          "name": "TZATZIKI (Greek yogurt with garlic, vinegar and olive oil)",
+          "price": "4,00"
+        },
+        {
+          "id": "tirokafteri-spicy-greek-cheese-spread",
+          "name": "TIROKAFTERI - spicy Greek cheese spread",
+          "price": "3,50"
+        },
+        {
+          "id": "fresh-cut-fried-potatoes",
+          "name": "FRESH-CUT FRIED POTATOES / ΠΑΤΑΤΕΣ ΤΗΓΑΝΙΤΕΣ",
+          "price": "4,00"
+        },
+        {
+          "id": "greek-spinach-pie-with-feta-cheese",
+          "name": "GREEK SPINACH PIE WITH FETA CHEESE / ΧΟΡΤΟΠΙΤΑ",
+          "price": "5,00"
+        },
+        {
+          "id": "cheese-pie-with-feta-and-honey",
+          "name": "CHEESE PIE WITH FETA AND HONEY / ΤΥΡΟΠΙΤΑΡΙ",
+          "price": "6,50"
+        },
+        {
+          "id": "ham-cheese-flute",
+          "name": "HAM - CHEESE FLUTE / ΦΛΟΓΕΡΕΣ",
+          "price": "6,00"
+        },
+        {
+          "id": "greek-tomato-fritters",
+          "name": "GREEK TOMATO FRITTERS / ΝΤΟΜΑΤΟΚΕΦΤΕΔΕΣ",
+          "price": "6,00"
+        }
+      ]
+    },
+    {
+      "id": "fish-seafood",
+      "title": "FISH - SEAFOOD",
+      "items": [
+        {
+          "id": "fresh-fried-anchovies",
+          "name": "FRESH FRIED ANCHOVIES / ΓΑΥΡΟΣ",
+          "price": "9,00"
+        },
+        {
+          "id": "grilled-sardines",
+          "name": "GRILLED SARDINES / ΣΑΡΔΕΛΑ ΨΗΤΗ",
+          "price": "9,50"
+        },
+        {
+          "id": "small-shrimps-fried",
+          "name": "SMALL SHRIMPS FRIED / ΓΑΡΙΔΟΥΛΕΣ",
+          "price": "9,00"
+        },
+        {
+          "id": "cod-fish-per-kilo",
+          "name": "COD FISH (PER KILO) / ΜΠΑΚΑΛΙΑΡΟΣ",
+          "price": "40,00"
+        },
+        {
+          "id": "shrimps-with-spaghetti",
+          "name": "SHRIMPS WITH SPAGHETTI / ΓΑΡΙΔΟΜΑΚΑΡΟΝΑΔΑ",
+          "price": "13,00"
+        },
+        {
+          "id": "shrimps-on-the-steam-with-lemon-juice",
+          "name": "SHRIMPS ON THE STEAM WITH LEMON JUICE / ΓΑΜΠΑΡΕΣ ΑΧΝΙΣΤΕΣ",
+          "price": "12,00"
+        },
+        {
+          "id": "shrimps-saganaki",
+          "name": "SHRIMPS SAGANAKI / ΓΑΡΙΔΕΣ ΣΑΓΑΝΑΚΙ",
+          "price": "16,00"
+        },
+        {
+          "id": "shrimps-on-grill",
+          "name": "SHRIMPS ON GRILL / ΓΑΡΙΔΕΣ ΨΗΤΕΣ",
+          "price": "12,00"
+        },
+        {
+          "id": "sea-bass-sea-bream",
+          "name": "SEA BASS / SEA BREAM",
+          "price": "30,00"
+        },
+        {
+          "id": "fried-squids-fresh",
+          "name": "FRIED SQUIDS FRESH / ΘΡΑΨΑΛΟ ΤΗΓΑΝΙΤΟ",
+          "price": "13,50"
+        },
+        {
+          "id": "grilled-squid",
+          "name": "GRILLED SQUID / ΘΡΑΨΑΛΟ ΨΗΤΟ (ΚΤΨ)",
+          "price": "13,00"
+        }
+      ]
+    },
+    {
+      "id": "meat-dishes",
+      "title": "MEAT DISHES",
+      "items": [
+        {
+          "id": "pork-chops",
+          "name": "PORK CHOPS / ΜΠΡΙΖΟΛΑΚΙΑ",
+          "price": "9,50"
+        },
+        {
+          "id": "pork-steak",
+          "name": "PORK STEAK / ΧΟΙΡΙΝΗ ΜΠΡΙΖΟΛΑ",
+          "price": "9,00"
+        },
+        {
+          "id": "pork-fillets",
+          "name": "PORK FILLETS / ΨΑΡΟΝΕΦΡΙ",
+          "price": "10,00"
+        },
+        {
+          "id": "beef-burgers",
+          "name": "BEEF BURGERS / ΜΠΙΦΤΕΚΙ ΜΟΣΧΑΡΙ",
+          "price": "9,50"
+        },
+        {
+          "id": "mutton-burgers",
+          "name": "MUTTON BURGERS / ΜΠΙΦΤΕΚΙ ΠΡΟΒΑΤΙΝΑ",
+          "price": "9,50"
+        },
+        {
+          "id": "chicken-fillets",
+          "name": "CHICKEN FILLETS / ΦΙΛΕΤΟ ΚΟΤΟΠΟΥΛΟ",
+          "price": "8,50"
+        },
+        {
+          "id": "chicken-burgers",
+          "name": "CHICKEN BURGERS / ΜΠΙΦΤΕΚΙ ΚΟΤΟΠΟΥΛΟ",
+          "price": "8,00"
+        },
+        {
+          "id": "sausage",
+          "name": "SAUSAGE / ΛΟΥΚΑΝΙΚΟ",
+          "price": "8,00"
+        },
+        {
+          "id": "panseta",
+          "name": "PANSETA",
+          "price": "8,50"
+        }
+      ]
+    },
+    {
+      "id": "drinks",
+      "title": "ΠΟΤΑ / DRINKS",
+      "items": [
+        {
+          "id": "250ml-white-red-wine",
+          "name": "ΚΡΑΣΙ ΛΕΥΚΟ / ΡΟΖΕ / ΚΟΚΚΙΝΟ (250ml) - WHITE / RED WINE",
+          "price": "2,00"
+        },
+        {
+          "id": "500ml-white-red-wine",
+          "name": "ΚΡΑΣΙ ΛΕΥΚΟ / ΡΟΖΕ / ΚΟΚΚΙΝΟ (500ml) - WHITE / RED WINE",
+          "price": "3,50"
+        },
+        {
+          "id": "malagouzia-500ml",
+          "name": "ΚΡΑΣΙ ΜΑΛΑΓΟΥΖΙΑ ΛΑΦΑΖΑΝΗ - MALAGOUZIA (500ml)",
+          "price": "5,00"
+        },
+        {
+          "id": "500ml-sweet-wine",
+          "name": "ΚΡΑΣΙ ΡΟΖΕ ΗΜΙΓΛΥΚΟ (500ml) - SWEET WINE",
+          "price": "4,00"
+        },
+        {
+          "id": "200ml",
+          "name": "ΟΥΖΟ ΚΑΡΑΦΑΚΙ ΜΙΝΙ / ΠΛΩΜΑΡΙ (200ml)",
+          "price": "9,00"
+        },
+        {
+          "id": "200ml-2",
+          "name": "ΟΥΖΟ ΚΑΡΑΦΑΚΙ ΒΑΡΒΑΓΙΑΝΝΗΣ (200ml) - ΠΡΑΣΙΝΟ",
+          "price": "9,00"
+        },
+        {
+          "id": "200ml-3",
+          "name": "ΟΥΖΟ ΚΑΡΑΦΑΚΙ ΒΑΡΒΑΓΙΑΝΝΗΣ (200ml) - ΜΠΛΕ",
+          "price": "10,00"
+        },
+        {
+          "id": "50ml",
+          "name": "ΟΥΖΟ ΚΑΡΑΦΑΚΙ ΠΛΩΜΑΡΙ / ΜΙΝΙ (50ml)",
+          "price": "2,50"
+        },
+        {
+          "id": "with-snack",
+          "name": "ΟΥΖΟ / ΤΣΙΠΟΥΡΟ ΧΥΜΑ ΜΕ ΜΕΖΕ - WITH SNACK",
+          "price": "2,50"
+        },
+        {
+          "id": "snack",
+          "name": "ΜΕΖΕΣ ΓΙΑ ΚΑΡΑΦΑΚΙ - SNACK",
+          "price": "3,00"
+        },
+        {
+          "id": "250ml",
+          "name": "ΟΥΖΟ ΧΥΜΑ (250ml)",
+          "price": "7,00"
+        },
+        {
+          "id": "250ml-2",
+          "name": "ΤΣΙΠΟΥΡΟ ΧΥΜΑ (250ml)",
+          "price": "6,00"
+        },
+        {
+          "id": "200ml-4",
+          "name": "ΤΣΙΠΟΥΡΟ ΚΑΡΑΦΑΚΙ ΔΕΚΑΡΑΚΙ / ΜΠΑΜΠΑΤΖΙΜ (200ml)",
+          "price": "9,00"
+        },
+        {
+          "id": "200ml-5",
+          "name": "ΤΣΙΠΟΥΡΟ ΚΑΡΑΦΑΚΙ ΑΠΟΣΤΟΛΑΚΗ (200ml)",
+          "price": "9,00"
+        },
+        {
+          "id": "200ml-6",
+          "name": "ΤΣΙΠΟΥΡΟ ΚΑΡΑΦΑΚΙ ΗΔΩΝΙΚΟ (200ml)",
+          "price": "10,00"
+        },
+        {
+          "id": "50ml-2",
+          "name": "ΤΣΙΠΟΥΡΟ ΚΑΡΑΦΑΚΙ ΑΠΟΣΤΟΛΑΚΗ / ΜΠΑΜΠΑΤΖΙΜ (50ml)",
+          "price": "2,50"
+        },
+        {
+          "id": "50ml-3",
+          "name": "ΤΣΙΠΟΥΡΟ ΚΑΡΑΦΑΚΙ ΗΔΩΝΙΚΟ (50ml)",
+          "price": "3,00"
+        },
+        {
+          "id": "alfa-fix-amstel-eza-free-eza-lager-pills-0",
+          "name": "ALFA / FIX / AMSTEL / EZA FREE / EZA LAGER / PILLS 0%",
+          "price": "3,00"
+        },
+        {
+          "id": "eza-pilsner",
+          "name": "ΜΑΜΟΣ / EZA PILSNER",
+          "price": "3,50"
+        },
+        {
+          "id": "kaizer-fisher",
+          "name": "KAIZER / FISHER / ΜΥΘΟΣ",
+          "price": "4,00"
+        },
+        {
+          "id": "soft-drinks",
+          "name": "ΑΝΑΨΥΚΤΙΚΑ - SOFT DRINKS",
+          "price": "2,00"
+        },
+        {
+          "id": "ice-tea",
+          "name": "ICE TEA ΛΕΜΟΝΙ-ΡΟΔΑΚΙΝΟ",
+          "price": "3,00"
+        },
+        {
+          "id": "750ml-sparkling-water",
+          "name": "ΝΕΡΟ ΑΝΘΡΑΚΟΥΧΟ (750ml) - SPARKLING WATER",
+          "price": "3,50"
+        },
+        {
+          "id": "1-lt-mineral-water",
+          "name": "ΝΕΡΟ ΕΜΦΙΑΛΩΜΕΝΟ (1 lt) - MINERAL WATER",
+          "price": "1,00"
+        },
+        {
+          "id": "0-50-lt-mineral-water",
+          "name": "ΝΕΡΟ ΕΜΦΙΑΛΩΜΕΝΟ (0,50 lt) - MINERAL WATER",
+          "price": "0,50"
+        }
+      ]
+    }
+  ]
+}

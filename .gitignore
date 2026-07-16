@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.idea/
+*.tsbuildinfo
+.env.local
+.playwright-cli/
+output/
+tmp/
+
