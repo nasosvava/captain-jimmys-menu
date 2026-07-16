@@ -229,5 +229,13 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), appApi({ username, password, dataDir })],
+    preview: {
+      allowedHosts: [
+        'healthcheck.railway.app',
+        '.up.railway.app',
+        'captainjimmysmenu.gr',
+      ],
+      strictPort: true,
+    },
   }
 })
